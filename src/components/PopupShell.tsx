@@ -182,21 +182,34 @@ export default function PopupShell() {
 	}, [pathname]);
 
 	// Click outside the popup, or Escape, closes it — same as the original.
+	// Note: this deliberately checks the click target instead of relying on
+	// event.stopPropagation() bubbling order. In the App Router, React's
+	// delegated click listener sits above <body>, so a native listener on
+	// document.body can fire before a child article's onClick had a chance
+	// to stop propagation — which was closing the popup when clicking
+	// buttons, links, or form fields inside /work and /contact.
 	useEffect(() => {
-		function onBodyClick() {
-			if (document.body.classList.contains("is-article-visible")) {
-				router.push(homePath);
+		function onDocumentClick(event: MouseEvent) {
+			if (!document.body.classList.contains("is-article-visible")) return;
+
+			const activeArticle = document.querySelector("#main > article.active");
+			if (activeArticle && activeArticle.contains(event.target as Node)) {
+				// Click landed inside the open popup — let it behave normally
+				// (buttons, inputs, links, the carousel, etc.) and don't close.
+				return;
 			}
+
+			router.push(homePath);
 		}
 		function onKeyUp(event: KeyboardEvent) {
 			if (event.key === "Escape" && document.body.classList.contains("is-article-visible")) {
 				router.push(homePath);
 			}
 		}
-		document.body.addEventListener("click", onBodyClick);
+		document.addEventListener("click", onDocumentClick);
 		window.addEventListener("keyup", onKeyUp);
 		return () => {
-			document.body.removeEventListener("click", onBodyClick);
+			document.removeEventListener("click", onDocumentClick);
 			window.removeEventListener("keyup", onKeyUp);
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
