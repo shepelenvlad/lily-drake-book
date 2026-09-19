@@ -18,4 +18,36 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://lily-drake-books.uk/" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lily-drake-books.uk/es" />
     </url>
+    <url>
+        <loc>https://lily-drake-books.uk/intro</loc>
+        <lastmod>2026-09-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://lily-drake-books.uk/intro" />
+        <xhtml:link rel="alternate" hreflang="es" href="https://lily-drake-books.uk/es/intro" />
+    </url>
+    <url>
+        <loc>https://lily-drake-books.uk/work</loc>
+        <lastmod>2026-09-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://lily-drake-books.uk/work" />
+        <xhtml:link rel="alternate" hreflang="es" href="https://lily-drake-books.uk/es/work" />
+    </url>
+    <url>
+        <loc>https://lily-drake-books.uk/about</loc>
+        <lastmod>2026-09-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://lily-drake-books.uk/about" />
+        <xhtml:link rel="alternate" hreflang="es" href="https://lily-drake-books.uk/es/about" />
+    </url>
+    <url>
+        <loc>https://lily-drake-books.uk/contact</loc>
+        <lastmod>2026-09-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://lily-drake-books.uk/contact" />
+        <xhtml:link rel="alternate" hreflang="es" href="https://lily-drake-books.uk/es/contact" />
+    </url>
 </urlset>
