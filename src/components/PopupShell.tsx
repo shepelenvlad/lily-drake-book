@@ -4,8 +4,9 @@ import { useEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Gallery from "@/components/Gallery";
 import LangSetter from "@/components/LangSetter";
+import StoreMap, { STORES } from "@/components/StoreMap";
 
-const ARTICLE_IDS = ["intro", "work", "about", "contact"] as const;
+const ARTICLE_IDS = ["intro", "work", "about", "contact", "stores"] as const;
 type ArticleId = (typeof ARTICLE_IDS)[number];
 type Locale = "en" | "es";
 
@@ -272,6 +273,11 @@ export default function PopupShell() {
 						<li>
 							<a href={path("contact")} onClick={navTo(path("contact"))}>
 								{locale === "es" ? "Contacto" : "Contact"}
+							</a>
+						</li>
+						<li>
+							<a href={path("stores")} onClick={navTo(path("stores"))}>
+								{locale === "es" ? "Encuéntralo en tiendas" : "Find in Stores"}
 							</a>
 						</li>
 					</ul>
@@ -687,6 +693,36 @@ export default function PopupShell() {
 							</a>
 						</li>
 					</ul>
+					<div className="close" onClick={closePopup}>
+						Close
+					</div>
+				</article>
+
+				{/* Find in Stores */}
+				<article id="stores" onClick={stop}>
+					<h2 className="major">
+						{locale === "es" ? "Encuéntralo en tiendas" : "Find in Stores"}
+					</h2>
+					<p>
+						{locale === "es"
+							? "Tiempo de Dragones: Despierta, mi Héroe está disponible en las siguientes librerías. Toca un marcador en el mapa para ver los detalles de cada tienda."
+							: "The Age of Dragons: Awake, My Hero is available at the following bookstores. Tap a marker on the map to see each store's details."}
+					</p>
+
+					<StoreMap locale={locale} />
+
+					<ul className="store-list">
+						{STORES.map((store) => (
+							<li key={store.name}>
+								<h4>{store.name}</h4>
+								<p>{store.address}</p>
+								<a href={store.mapsUrl} target="_blank" rel="noopener noreferrer">
+									{locale === "es" ? "Ver en Google Maps" : "View on Google Maps"}
+								</a>
+							</li>
+						))}
+					</ul>
+
 					<div className="close" onClick={closePopup}>
 						Close
 					</div>
