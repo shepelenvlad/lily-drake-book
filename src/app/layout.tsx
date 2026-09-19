@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import PopupShell from "@/components/PopupShell";
 
 export const siteUrl = "https://lily-drake-books.uk";
 
@@ -39,6 +40,12 @@ export default function RootLayout({
 				</div>
 
 				{children}
+
+				{/* Popup shell — lives in the root layout (not in each page) so it
+				    stays mounted across /, /intro, /work, /about, /contact
+				    navigations, which is what keeps the slide open/close
+				    animation smooth instead of hard-cutting on page swap. */}
+				<PopupShell />
 
 				{/* BG */}
 				<div id="bg"></div>
